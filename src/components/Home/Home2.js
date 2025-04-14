@@ -23,32 +23,24 @@ function Home2() {
               <br />
               <br />I am fluent in languages like
               <i>
-                <b className="purple"> Python, C, C++, Javascript and Java. </b>
+                <b className="purple">Python, C, C++, TypeScript, JavaScript, Java, and Solidity. </b>
               </i>
               <br />
               <br />
-              My field of interest's are building new &nbsp;
+              My field of interest's are &nbsp;
               <i>
-                <b className="purple">Web Applications and Products </b> and
-                also in areas related to{" "}
-                <b className="purple">
-                  Blockchain & AI.
-                </b>
-              </i>
+                <b className="purple">Full-Stack Web Development, Blockchain, and Generative AI, </b> 
+              </i> &nbsp;
+                with a passion for building impactful digital products.
               <br />
               <br />
-              In my spare time, I apply my passion for developing products
-              with <b className="purple">React.js</b> and
+              I apply my skills through &nbsp;
               <i>
-                <b className="purple">
-                  {" "}
-                  Other Technologies and Frameworks
-                </b>
-              </i>
-              &nbsp; like
+                <b className="purple"> internships, </b> 
+              </i> &nbsp;, and &nbsp;
               <i>
-                <b className="purple"> Flask, OpenCV, Hardhat and OpenAI</b>
-              </i>
+                <b className="purple">freelance work </b> 
+              </i> &nbsp;, building scalable blockchain systems, conducting workshops, and contributing to real-world projects.
             </p>
           </Col>
           <Col md={4} className="myAvtar">
