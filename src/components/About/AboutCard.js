@@ -10,8 +10,10 @@ function AboutCard() {
           <p style={{ textAlign: "justify" }}>
             Hi Everyone, I am <span className="purple">Siddhartha Bhattacharjee </span>
             from <span className="purple"> Assam, India. </span> currently based in <span className="purple"> Bangaloren </span>.
+              <br />
             <br /> I’m a final-year B.Tech Computer Science Engineering student at SRM University, Chennai, with a CGPA of 9.89. I’ve gained hands-on experience through internships at <span className="purple">Broadridge</span> and <span className="purple">Siemens</span>, working on cutting-edge technologies like Blockchain, Hyperledger Fabric, Solidity, and Full-Stack Development.
             <br />
+              <br />
               As a passionate technologist, I’ve built impactful projects like <span className="purple">ResqAI</span> (a GenAI-powered emergency call management system) and <span className="purple">Lifafa</span> (a blockchain-based gifting platform), and I’ve <span className="purple">won 3 national-level hackathons</span> including the WarpSpeed GenAI Hackathon.
             <br />
             <br />
