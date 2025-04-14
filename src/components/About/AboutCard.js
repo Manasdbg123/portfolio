@@ -9,7 +9,7 @@ function AboutCard() {
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
             Hi Everyone, I am <span className="purple">Siddhartha Bhattacharjee </span>
-            from <span className="purple"> Assam, India. </span> currently based in <span className="purple"> Bangaloren </span>.
+            from <span className="purple"> Assam, India. </span> currently based in <span className="purple"> Bangalore, India </span>.
               <br />
             <br /> 
               I’m a final-year B.Tech Computer Science Engineering student at SRM University, Chennai, with a CGPA of 9.89. I’ve gained hands-on experience through internships at <span className="purple">Broadridge</span> and <span className="purple">Siemens</span>, working on cutting-edge technologies like Blockchain, Hyperledger Fabric, Solidity, and Full-Stack Development.
