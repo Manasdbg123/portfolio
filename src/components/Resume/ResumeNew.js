@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
-import pdf from "../../Assets/../Assets/MyResume_SiddharthaBhattacharjee.pdf";
+import pdf from "../../Assets/Kaustuk_Raj_CV.pdf";
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumeNew() {
@@ -17,7 +18,7 @@ function ResumeNew() {
 
   return (
     <div>
-      <Container fluid className="resume-section" style={{overflowX:'hidden'}}>
+      <Container fluid className="resume-section" style={{ overflowX: "hidden" }}>
         <Particle />
         <Row style={{ justifyContent: "center", position: "relative" }}>
           <Button
