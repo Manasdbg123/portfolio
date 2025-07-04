@@ -8,35 +8,70 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Siddhartha Bhattacharjee </span>
-            from <span className="purple"> Assam, India. </span> currently based in <span className="purple"> Bangalore, India </span>.
-              <br />
-            <br /> 
-              I’m a final-year B.Tech Computer Science Engineering student at SRM University, Chennai, with a CGPA of 9.89. I’ve gained hands-on experience through internships at <span className="purple">Broadridge</span> and <span className="purple">Siemens</span>, working on cutting-edge technologies like Blockchain, Hyperledger Fabric, Solidity, and Full-Stack Development.
-            <br />
-              <br />
-              As a passionate technologist, I’ve built impactful projects like <span className="purple">ResqAI</span> (a GenAI-powered emergency call management system) and <span className="purple">Lifafa</span> (a blockchain-based gifting platform), and I’ve <span className="purple">won 3 national-level hackathons</span> including the WarpSpeed GenAI Hackathon and Unfold 2023.
+            Hi Everyone, I am <span className="purple">Kumar Kaustuk Raj</span> from <span className="purple">India</span>. 
             <br />
             <br />
-            In addition to development, I’ve <span className="purple">conducted tech workshops in 9 colleges</span> and organized events through my work with <span className="purple">Shardeum</span>, <span className="purple">Fire-Chain</span>, and college communities like <span className="purple">CodeChef SRM RMP</span> and <span className="purple">GDSC</span>. I’m always eager to learn, build, and help others grow along the way.
-              <br />
-              <br />
-              Beyond Coding, I Enjoy:
+            I’m a B.Tech Computer Science and Engineering student at 
+            <span className="purple"> NIT Andhra Pradesh</span>, graduating in 2025 with a current CGPA of 7.0.
+            <br />
+            <br />
+            I have hands-on experience building scalable systems and full-stack applications using 
+            <span className="purple"> Java, Spring Boot, RESTful APIs, MongoDB, and MySQL</span>. 
+            Some of my notable projects include:
           </p>
           <ul>
             <li className="about-activity">
-              <ImPointRight /> Attending tech conferences, seminars, and hackathons
+              <ImPointRight /> <span className="purple">Sketch-to-Face GAN</span>: Enhanced image realism by 15% using optimized U-Net based GANs.
             </li>
             <li className="about-activity">
-              <ImPointRight /> Teaching and mentoring through workshops and events
+              <ImPointRight /> <span className="purple">Recipe Blog</span>: A dynamic platform with 200+ recipes and user interactions via comments and ratings.
             </li>
             <li className="about-activity">
-              <ImPointRight /> Traveling and exploring new ideas & cultures
+              <ImPointRight /> <span className="purple">Hospital Management System</span>: Developed with Spring Boot for secure and efficient hospital operations.
+            </li>
+            <li className="about-activity">
+              <ImPointRight /> <span className="purple">Shopping Cart App</span>: E-commerce app supporting user authentication and secure checkout.
+            </li>
+          </ul>
+
+          <p>
+            I’ve also solved over <span className="purple">2000+ DSA problems</span> across platforms like 
+            <span className="purple"> Codeforces, LeetCode, and GFG</span>. I'm proud to be a:
+          </p>
+          <ul>
+            <li className="about-activity">
+              <ImPointRight /> Candidate Master on Codeforces (Rating: 1913)
+            </li>
+            <li className="about-activity">
+              <ImPointRight /> Guardian on LeetCode (Rating: 2183)
+            </li>
+            <li className="about-activity">
+              <ImPointRight /> Global Rank 11 in a Leetcode Contest
+            </li>
+          </ul>
+
+          <p>
+            I actively contribute to campus communities and have held roles in organizing events at 
+            <span className="purple"> NIT AP Tech Fest</span> and <span className="purple">Praayatnam</span>.
+          </p>
+
+          <p>
+            Beyond Coding, I Enjoy:
+          </p>
+          <ul>
+            <li className="about-activity">
+              <ImPointRight /> Solving algorithmic challenges and participating in coding contests
+            </li>
+            <li className="about-activity">
+              <ImPointRight /> Learning new tech stacks and backend architectures
+            </li>
+            <li className="about-activity">
+              <ImPointRight /> Exploring development tools, automation, and open-source contributions
             </li>
           </ul>
 
           <p style={{ color: "#628c88d5" }}>
-            "Motivation is temporary, consistency is permanent!"{" "}
+            "Motivation is temporary, consistency is permanent!"
           </p>
           <footer className="blockquote-footer">Kelly Slater</footer>
         </blockquote>

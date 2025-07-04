@@ -19,28 +19,32 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I first started programming when I was 15 Years old, and I have been in love with it ever since 💖
-              <br />
-              <br />I am fluent in languages like
+              I'm currently pursuing a B.Tech in Computer Science and Engineering at 
               <i>
-                <b className="purple">Python, C, C++, TypeScript, JavaScript, Java, and Solidity. </b>
+                <b className="purple"> NIT Andhra Pradesh</b>
+              </i>, with strong problem-solving skills and a deep passion for software development.
+              <br />
+              <br />
+              I am fluent in languages like{" "}
+              <i>
+                <b className="purple">Java, Python, C++, JavaScript, and SQL.</b>
               </i>
               <br />
               <br />
-              My field of interest's are &nbsp;
+              My core interests lie in{" "}
               <i>
-                <b className="purple">Full-Stack Web Development, Blockchain, and Generative AI, </b> 
-              </i> &nbsp;
-                with a passion for building impactful digital products.
+                <b className="purple">Backend Development, Full-Stack Systems, and AI using GANs</b>
+              </i>, and I enjoy architecting scalable and secure applications.
               <br />
               <br />
-              I apply my skills through &nbsp;
-              <i>
-                <b className="purple"> internships, </b> 
-              </i> &nbsp;, and &nbsp;
-              <i>
-                <b className="purple">freelance work </b> 
-              </i> &nbsp;, building scalable blockchain systems, conducting workshops, and contributing to real-world projects.
+              I’ve built and deployed real-world applications like a{" "}
+              <b className="purple">Hospital Management System, Recipe Blog</b>, and{" "}
+              <b className="purple">GAN-based Sketch-to-Face Transformer</b>, and I’m an active contributor in coding contests.
+              <br />
+              <br />
+              I've solved over <b className="purple">2000+ DSA problems</b> and achieved rankings such as{" "}
+              <b className="purple">Candidate Master on Codeforces</b> and{" "}
+              <b className="purple">Guardian on LeetCode</b>.
             </p>
           </Col>
           <Col md={4} className="myAvtar">
@@ -53,42 +57,42 @@ function Home2() {
           <Col md={12} className="home-about-social">
             <h1>FIND ME ON</h1>
             <p>
-              Feel free to <span className="purple">connect </span>with me
+              Feel free to <span className="purple">connect</span> with me
             </p>
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a
-                  href="https://github.com/SiddharthaBhattacharjee"
+                  href="https://github.com/Manasdbg123"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
                 >
                   <AiFillGithub />
                 </a>
               </li>
               <li className="social-icons">
                 <a
-                  href="https://twitter.com/Siddhartha_2345"
+                  href="https://twitter.com/"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
                 >
                   <AiOutlineTwitter />
                 </a>
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.linkedin.com/in/siddharthabhattacharjee2345/"
+                  href="https://www.linkedin.com/in/kaustuk-raj-63a240226/"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
                 >
                   <FaLinkedinIn />
                 </a>
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.instagram.com/programmer_sid/"
+                  href="https://www.instagram.com/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour home-social-icons"
@@ -103,4 +107,5 @@ function Home2() {
     </Container>
   );
 }
+
 export default Home2;
