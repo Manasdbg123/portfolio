@@ -6,6 +6,7 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
+import CodingProfile from "./components/CodingProfile"; // ✅ New import
 import {
   BrowserRouter as Router,
   Route,
@@ -24,14 +25,13 @@ function App() {
     const timer = setTimeout(() => {
       upadateLoad(false);
     }, 1200);
-
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <Router>
       <Preloader load={load} />
-      <div className="App" id={load ? "no-scroll" : "scroll"} style={{overflowX:'hidden'}}>
+      <div className="App" id={load ? "no-scroll" : "scroll"} style={{ overflowX: "hidden" }}>
         <Navbar />
         <ScrollToTop />
         <Routes>
@@ -39,7 +39,8 @@ function App() {
           <Route path="/project" element={<Projects />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/"/>} />
+          <Route path="/codingprofile" element={<CodingProfile />} /> {/* ✅ New Route */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
       </div>
