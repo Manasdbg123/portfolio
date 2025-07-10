@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.fork-btn-inner:hover {
+  background-color: #f1c40f !important;
+  color: #151515 !important;
+  transform: scale(1.05);
+  transition: 0.3s ease;
+}
