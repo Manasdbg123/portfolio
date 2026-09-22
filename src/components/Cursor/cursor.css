@@ -1,0 +1,45 @@
+.os-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.os-cursor-dot {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--os-accent);
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease, background 0.2s ease;
+}
+
+.os-cursor.is-active .os-cursor-dot {
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  background: transparent;
+  border: 1px solid var(--os-accent);
+}
+
+.os-cursor-label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--os-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--os-accent);
+  background: var(--os-bg-raised);
+  border: 1px solid var(--os-border);
+  padding: 3px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+@media (pointer: coarse) {
+  .os-cursor { display: none; }
+}

@@ -1,0 +1,90 @@
+.os-hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 90px;
+}
+
+.os-hero-inner { max-width: 900px; position: relative; z-index: 2; }
+
+.os-hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.os-hero-canvas canvas { display: block; }
+
+/* softens the text/canvas boundary so typography stays readable over the scene */
+.os-hero-3d .os-hero-inner::before {
+  content: "";
+  position: absolute;
+  inset: -40px -60px;
+  background: radial-gradient(60% 70% at 20% 40%, var(--os-bg) 0%, rgba(10, 10, 12, 0.7) 55%, transparent 100%);
+  z-index: -1;
+}
+
+.os-hero-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+  padding: 6px 16px 6px 6px;
+  border: 1px solid var(--os-border);
+  border-radius: 999px;
+  background: rgba(19, 19, 22, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.os-hero-id-photo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--os-accent);
+  box-shadow: 0 0 12px -2px var(--os-accent);
+  flex-shrink: 0;
+}
+.os-hero-id-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.os-hero-tag { display: inline-block; }
+
+.os-hero-role {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 26px;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--os-text);
+}
+.os-hero-dot { color: var(--os-text-faint); }
+
+.os-hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+}
+
+.os-hero-scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--os-text-faint);
+}
+
+@media (max-width: 640px) {
+  .os-hero { min-height: 80vh; padding-top: 110px; }
+}

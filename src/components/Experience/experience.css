@@ -1,0 +1,44 @@
+.os-experience-list { display: flex; flex-direction: column; gap: 28px; margin-top: 32px; }
+
+.os-experience-item {
+  border: 1px solid var(--os-border);
+  border-radius: var(--os-radius);
+  padding: 28px clamp(20px, 4vw, 32px);
+  background: var(--os-surface);
+}
+
+.os-experience-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--os-border);
+}
+
+.os-experience-company { color: var(--os-text-dim); margin-top: 6px; }
+.os-experience-period { color: var(--os-accent); white-space: nowrap; }
+
+.os-experience-highlights {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.os-experience-highlights li {
+  position: relative;
+  padding-left: 20px;
+  max-width: 100%;
+}
+.os-experience-highlights li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--os-accent);
+}
+
+.os-experience-tech { display: flex; flex-wrap: wrap; gap: 8px; }

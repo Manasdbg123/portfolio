@@ -1,0 +1,10 @@
+.os-contact { text-align: left; padding-bottom: clamp(90px, 14vh, 160px); }
+
+.os-contact-heading { margin-bottom: 44px; }
+
+.os-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  font-size: 14px;
+}
