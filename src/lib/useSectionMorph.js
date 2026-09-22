@@ -16,6 +16,17 @@ export default function useSectionMorph(containerRef) {
     const container = containerRef.current;
     if (!container) return undefined;
 
+    // Mobile skip: continuous 3D transforms (perspective + rotateX +
+    // backface-visibility) on every section, recalculated on every scroll
+    // tick, is a well-known source of scroll jank and touch-hit-testing
+    // bugs on phone browsers — this was almost certainly the actual cause
+    // of "not working properly on phone". Touch devices keep the plain
+    // opacity/blur fade from useReveal instead, which is cheap and never
+    // interferes with touch scrolling.
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const narrow = window.innerWidth < 720;
+    if (isTouch || narrow) return undefined;
+
     let triggers = [];
     let disposed = false;
 
