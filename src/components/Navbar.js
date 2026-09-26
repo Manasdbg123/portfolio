@@ -1,107 +1,88 @@
-import React, { useState } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import logo from "../Assets/logo.png";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { FiDownload, FiMenu, FiX } from "react-icons/fi";
+import { navItems, profile } from "../data/profile";
 
-import { CgGitFork, CgFileDocument } from "react-icons/cg";
-import {
-  AiFillStar,
-  AiOutlineHome,
-  AiOutlineFundProjectionScreen,
-  AiOutlineUser,
-} from "react-icons/ai";
-import { SiCodeforces } from "react-icons/si";
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("about");
 
-function NavBar() {
-  const [expand, updateExpanded] = useState(false);
-  const [navColour, updateNavbar] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  function scrollHandler() {
-    if (window.scrollY >= 20) {
-      updateNavbar(true);
-    } else {
-      updateNavbar(false);
-    }
-  }
+  // Highlight the section currently in the middle of the screen.
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) return undefined;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    navItems.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
-  window.addEventListener("scroll", scrollHandler);
+  // Lock page scroll behind the open phone menu, and close it with Escape.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   return (
-    <Navbar
-      expanded={expand}
-      fixed="top"
-      expand="md"
-      className={navColour ? "sticky" : "navbar"}
-    >
-      <Container fluid>
-        {/* Logo */}
-        <Navbar.Brand as={Link} to="/" className="text-info fw-bold fs-4">
-  Kaustuk.
-</Navbar.Brand>
+    <header className={`nav ${scrolled ? "nav-scrolled" : ""} ${open ? "nav-open" : ""}`}>
+      <div className="container nav-inner">
+        <a href="#about" className="nav-logo" onClick={() => setOpen(false)} aria-label="Kaustuk Raj, back to top">
+          <span className="nav-logo-mark">KR</span>
+          <span className="nav-logo-text">{profile.shortName}</span>
+        </a>
 
+        <nav className="nav-links" aria-label="Sections">
+          {navItems.map(({ id, label }) => (
+            <a key={id} href={`#${id}`} className={active === id ? "is-active" : ""}>
+              {label}
+            </a>
+          ))}
+        </nav>
 
-        {/* Toggle for Mobile */}
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
-          onClick={() => updateExpanded(expand ? false : "expanded")}
+        <a className="btn btn-small btn-primary nav-resume" href={profile.resume} target="_blank" rel="noreferrer">
+          <FiDownload /> Résumé
+        </a>
+
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen((v) => !v)}
         >
-          <span></span>
-          <span></span>
-          <span></span>
-        </Navbar.Toggle>
+          {open ? <FiX /> : <FiMenu />}
+        </button>
+      </div>
 
-        {/* Collapsible Nav */}
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto pe-2" defaultActiveKey="#home">
-            <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-              <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
-            </Nav.Link>
-
-            <Nav.Link as={Link} to="/about" onClick={() => updateExpanded(false)}>
-              <AiOutlineUser style={{ marginBottom: "2px" }} /> About
-            </Nav.Link>
-
-            <Nav.Link as={Link} to="/project" onClick={() => updateExpanded(false)}>
-              <AiOutlineFundProjectionScreen style={{ marginBottom: "2px" }} /> Projects
-            </Nav.Link>
-
-            <Nav.Link as={Link} to="/resume" onClick={() => updateExpanded(false)}>
-              <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
-            </Nav.Link>
-
-            <Nav.Link as={Link} to="/codingprofile" onClick={() => updateExpanded(false)}>
-              <SiCodeforces style={{ marginBottom: "2px" }} /> Coding Profile
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-
-        {/* ⭐ GitHub Button – outside Nav for alignment */}
-        <div className="me-4 d-none d-md-block">
-          <Button
-            href="https://github.com/Manasdbg123/portfolio"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fork-btn-inner d-flex align-items-center gap-2"
-            title="Star/Fork this portfolio on GitHub"
-            style={{
-              backgroundColor: "#151515",
-              border: "1px solid #f1c40f",
-              color: "#f1c40f",
-              padding: "6px 12px",
-              borderRadius: "8px",
-              boxShadow: "0 0 8px rgba(241, 196, 15, 0.4)",
-            }}
-          >
-            <CgGitFork style={{ fontSize: "1.3rem" }} />
-            <AiFillStar style={{ fontSize: "1.2rem" }} />
-          </Button>
-        </div>
-      </Container>
-    </Navbar>
+      <div id="mobile-menu" className="mobile-menu" hidden={!open}>
+        <nav aria-label="Sections">
+          {navItems.map(({ id, label }, i) => (
+            <a key={id} href={`#${id}`} onClick={() => setOpen(false)} style={{ animationDelay: `${i * 45}ms` }}>
+              {label}
+            </a>
+          ))}
+        </nav>
+        <a className="btn btn-primary" href={profile.resume} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+          <FiDownload /> Download résumé
+        </a>
+      </div>
+    </header>
   );
 }
-
-export default NavBar;

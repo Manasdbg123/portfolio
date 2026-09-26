@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/resume", "destination": "/Kaustuk_Raj_CV.pdf", "permanent": false },
+    { "source": "/codingprofile", "destination": "/#achievements", "permanent": false }
+  ],
+  "rewrites": [{ "source": "/((?!static/|.*\\.).*)", "destination": "/index.html" }]
+}
