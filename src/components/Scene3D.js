@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment";
 
 // Full-page 3D backdrop: a slowly turning star field and floating low-poly
 // shapes that drift with the pointer and scroll. It sits behind the content
@@ -52,7 +53,7 @@ function makeShape(geometry, color) {
   const solid = new THREE.Mesh(
     geometry,
     new THREE.MeshStandardMaterial({
-      color: 0x0f172a,
+      color: 0x1e293b,
       emissive: color,
       emissiveIntensity: 0.1,
       metalness: 0.6,
@@ -91,6 +92,9 @@ export default function Scene3D() {
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    scene.environment = envTex;
     scene.fog = new THREE.FogExp2(0x050814, 0.045);
     const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.set(0, 0, 12);
@@ -104,6 +108,41 @@ export default function Scene3D() {
 
     const stars = makeStars(small ? 450 : 1200, 26);
     scene.add(stars);
+
+    // A rolling wave of points receding into the distance under the first
+    // screen: a clear floor that gives the scene perspective.
+    const cols = small ? 48 : 90;
+    const rows = small ? 26 : 44;
+    const wavePos = new Float32Array(cols * rows * 3);
+    const waveCol = new Float32Array(cols * rows * 3);
+    const cA = new THREE.Color(0x22d3ee);
+    const cB = new THREE.Color(0x8b5cf6);
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        const k = (i * rows + j) * 3;
+        wavePos[k] = (i / (cols - 1) - 0.5) * 36;
+        wavePos[k + 2] = -j * 0.9 + 4;
+        const c = cA.clone().lerp(cB, j / rows);
+        waveCol.set([c.r, c.g, c.b], k);
+      }
+    }
+    const waveGeo = new THREE.BufferGeometry();
+    waveGeo.setAttribute("position", new THREE.BufferAttribute(wavePos, 3));
+    waveGeo.setAttribute("color", new THREE.BufferAttribute(waveCol, 3));
+    const wave = new THREE.Points(
+      waveGeo,
+      new THREE.PointsMaterial({ size: small ? 0.07 : 0.06, vertexColors: true, transparent: true, opacity: 0.75, depthWrite: false, blending: THREE.AdditiveBlending })
+    );
+    wave.position.y = -5.2;
+    scene.add(wave);
+    const animateWave = (t) => {
+      const a = waveGeo.attributes.position.array;
+      for (let i = 0; i < a.length; i += 3) {
+        a[i + 1] = Math.sin(a[i] * 0.35 + t * 0.9) * 0.35 + Math.cos(a[i + 2] * 0.4 + t * 0.7) * 0.35;
+      }
+      waveGeo.attributes.position.needsUpdate = true;
+    };
+    animateWave(0);
 
     // Shapes sit towards the edges so they never sit behind the text column.
     // side: -1 left edge, 1 right edge. Shapes hug the screen edges so they
@@ -122,7 +161,7 @@ export default function Scene3D() {
     const shapes = used.map(({ geo, side, y, z }, i) => {
       const shape = makeShape(geo, ACCENTS[i % ACCENTS.length]);
       shape.position.set(0, y, z);
-      shape.scale.setScalar(small ? 0.55 : 1);
+      shape.scale.setScalar(small ? 0.6 : 1.25);
       shape.userData = { side, baseY: y, speed: 0.15 + Math.random() * 0.25, phase: Math.random() * Math.PI * 2 };
       scene.add(shape);
       return shape;
@@ -165,6 +204,7 @@ export default function Scene3D() {
       camera.lookAt(0, camera.position.y, 0);
       stars.rotation.y = t * 0.02 + progress * 0.6;
       stars.rotation.x = t * 0.01;
+      animateWave(t);
       shapes.forEach((s) => {
         const { baseY, speed, phase } = s.userData;
         s.rotation.x = t * speed + progress * 2;
@@ -204,6 +244,8 @@ export default function Scene3D() {
         if (obj.geometry) obj.geometry.dispose();
         if (obj.material) obj.material.dispose();
       });
+      envTex.dispose();
+      pmrem.dispose();
       renderer.dispose();
       if (renderer.domElement.parentNode === mount) mount.removeChild(renderer.domElement);
     };

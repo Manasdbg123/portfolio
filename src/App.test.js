@@ -14,7 +14,7 @@ test("opens on the About section with the name, photo and résumé link", () => 
 test("shows every section in a clear order", () => {
   render(<App />);
   const ids = Array.from(document.querySelectorAll("main > section")).map((s) => s.id);
-  expect(ids).toEqual(["about", "experience", "projects", "skills", "achievements", "contact"]);
+  expect(ids).toEqual(["about", "experience", "education", "projects", "skills", "coding", "contact"]);
 });
 
 test("lists the résumé projects and skills", () => {
@@ -29,4 +29,12 @@ test("never shows skills that are not on the résumé", () => {
   ["Kubernetes", "TypeScript", "LangChain", "PyTorch", "Anthropic", "Flask", "Java 11"].forEach((word) =>
     expect(text).not.toContain(word)
   );
+});
+
+test("shows school results and both coding profiles", () => {
+  render(<App />);
+  expect(screen.getByText("81%")).toBeInTheDocument();
+  expect(screen.getByText("74.8%")).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /view codeforces profile/i })).toHaveAttribute("href", "https://codeforces.com/profile/manasraj123");
+  expect(screen.getByRole("link", { name: /view leetcode profile/i })).toHaveAttribute("href", "https://leetcode.com/u/manas-12345/");
 });

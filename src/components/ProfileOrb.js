@@ -1,11 +1,22 @@
-import React, { useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import photo from "../images/profile.jpg";
 import { TechIcon } from "./techIcons";
+import Medallion3D from "./Medallion3D";
 import useMedia, { FINE_POINTER, REDUCED_MOTION } from "../hooks/useMedia";
 
-// The large circular portrait, held inside two orbiting 3D rings with the
-// core technologies floating around it. It leans towards the pointer on
+// The large circular portrait. Where WebGL is available it is a real 3D
+// medallion (Medallion3D); otherwise a CSS version with orbiting rings and
+// floating technology badges. Either way it leans towards the pointer on
 // desktop and sways gently on its own on touch screens.
+
+function hasWebGL() {
+  try {
+    const c = document.createElement("canvas");
+    return !!(window.WebGLRenderingContext && (c.getContext("webgl2") || c.getContext("webgl")));
+  } catch (e) {
+    return false;
+  }
+}
 const BADGES = [
   { name: "Java", pos: "b1" },
   { name: "Spring Boot", pos: "b2" },
@@ -19,6 +30,8 @@ export default function ProfileOrb({ name }) {
   const finePointer = useMedia(FINE_POINTER);
   const reducedMotion = useMedia(REDUCED_MOTION);
   const canTilt = finePointer && !reducedMotion;
+  const [webgl, setWebgl] = useState(hasWebGL);
+  const onFail = useCallback(() => setWebgl(false), []);
 
   const onMove = (e) => {
     const el = ref.current;
@@ -33,6 +46,20 @@ export default function ProfileOrb({ name }) {
     ref.current?.style.setProperty("--orb-rx", "0deg");
     ref.current?.style.setProperty("--orb-ry", "0deg");
   };
+
+  if (webgl) {
+    return (
+      <div className="orb orb-3d">
+        <div className="orb-stage">
+          <Medallion3D photo={photo} interactive={canTilt} onFail={onFail} />
+          <img className="sr-only" src={photo} alt={`Portrait of ${name}`} />
+        </div>
+        <span className="orb-status">
+          <span className="orb-status-dot" /> Open to opportunities
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div
