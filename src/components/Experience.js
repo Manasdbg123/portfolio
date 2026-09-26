@@ -1,6 +1,6 @@
 import React from "react";
-import { FiBookOpen, FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
-import { education, experience } from "../data/profile";
+import { FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
+import { experience } from "../data/profile";
 import SectionHeader from "./SectionHeader";
 import TiltCard from "./TiltCard";
 import { TechTag } from "./techIcons";
@@ -40,23 +40,6 @@ export default function Experience() {
             </li>
           ))}
 
-          <li className="timeline-item reveal">
-            <span className="timeline-dot" aria-hidden="true"><FiBookOpen /></span>
-            <TiltCard className="card" max={4}>
-              <div className="card-head">
-                <div>
-                  <h3 className="card-title">{education.degree}</h3>
-                  <p className="card-subtitle">{education.school}</p>
-                </div>
-                <div className="card-meta">
-                  <span><FiCalendar /> {education.period}</span>
-                </div>
-              </div>
-              <ul className="highlights highlights-compact">
-                {education.activities.map((a) => <li key={a}>{a}</li>)}
-              </ul>
-            </TiltCard>
-          </li>
         </ol>
       </div>
     </section>

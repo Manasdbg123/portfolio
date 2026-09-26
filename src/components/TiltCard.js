@@ -5,7 +5,7 @@ import useMedia, { FINE_POINTER, REDUCED_MOTION } from "../hooks/useMedia";
 // The outer element carries the scroll-in entrance (reveal) and the inner one
 // the tilt, so the two transforms never fight. Touch screens and
 // reduced-motion users get a still card; its entrance still plays.
-export default function TiltCard({ as: Tag = "div", className = "", reveal = false, delay = 0, max = 7, children, ...rest }) {
+export default function TiltCard({ as: Tag = "div", className = "", reveal = false, delay = 0, max = 7, style, children, ...rest }) {
   const ref = useRef(null);
   const finePointer = useMedia(FINE_POINTER);
   const reducedMotion = useMedia(REDUCED_MOTION);
@@ -33,7 +33,7 @@ export default function TiltCard({ as: Tag = "div", className = "", reveal = fal
     <Tag
       ref={ref}
       className={`tilt-wrap ${reveal ? "reveal" : ""}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={delay ? { transitionDelay: `${delay}ms`, ...style } : style}
       onMouseMove={canTilt ? onMove : undefined}
       onMouseLeave={canTilt ? onLeave : undefined}
       {...rest}

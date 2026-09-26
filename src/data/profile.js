@@ -61,12 +61,35 @@ export const experience = [
   },
 ];
 
-export const education = {
-  school: "National Institute of Technology, Andhra Pradesh",
-  degree: "B.Tech in Computer Science and Engineering",
-  period: "Dec 2021 – Apr 2025",
-  activities: ["Organising team, NIT AP Tech Fest", "Member, Praayatnam NIT AP"],
-};
+// Newest first. Marks are from the official mark sheets.
+export const education = [
+  {
+    level: "Graduation",
+    degree: "B.Tech in Computer Science and Engineering",
+    school: "National Institute of Technology, Andhra Pradesh",
+    period: "Dec 2021 – Apr 2025",
+    score: null,
+    points: ["Organising team, NIT AP Tech Fest", "Member, Praayatnam NIT AP"],
+  },
+  {
+    level: "Class XII",
+    degree: "Intermediate (Science): Physics, Chemistry, Mathematics",
+    school: "Thakur Vindrshwari Higher Secondary School, Barhampur, Darbhanga",
+    board: "Bihar School Examination Board",
+    period: "2020",
+    score: { value: "81%", detail: "405 / 500 · First Division" },
+    points: ["Mathematics: 93 / 100 (distinction)", "Chemistry: 83 / 100 (distinction)"],
+  },
+  {
+    level: "Class X",
+    degree: "Secondary School Examination",
+    school: "T. B. S. High School, Brahampur, Darbhanga",
+    board: "Bihar School Examination Board",
+    period: "2018",
+    score: { value: "74.8%", detail: "374 / 500 · First Division" },
+    points: ["Mathematics: 89 / 100", "Science: 84 / 100"],
+  },
+];
 
 // The two projects on the résumé, shown in full.
 export const featuredProjects = [
@@ -191,35 +214,47 @@ export const skillGroups = [
   },
 ];
 
-export const achievements = [
-  {
+// Competitive programming. The Codeforces card refreshes rating, rank, avatar
+// and rating history from the public Codeforces API in the visitor's
+// browser; these values are the fallback (from the résumé).
+export const codingProfiles = {
+  codeforces: {
     platform: "Codeforces",
-    title: "Candidate Master",
-    value: "1913",
-    detail: "Global rank 57 in Codeforces Round 1030 (Div. 2)",
-    link: profile.links.codeforces,
+    handle: "manasraj123",
+    link: "https://codeforces.com/profile/manasraj123",
+    maxRating: 1913,
+    maxRank: "Candidate Master",
+    color: "#c147e9",
+    nextTitle: "Master",
+    highlights: [
+      "Global rank 57 in Codeforces Round 1030 (Div. 2)",
+      "Peak rating 1913: Candidate Master, the fifth of ten Codeforces titles",
+    ],
   },
-  {
+  leetcode: {
     platform: "LeetCode",
-    title: "Guardian",
-    value: "2183",
-    detail: "Global rank 11 in a LeetCode Weekly Contest",
-    link: profile.links.leetcode,
+    handle: "manas-12345",
+    link: "https://leetcode.com/u/manas-12345/",
+    rating: 2183,
+    badge: "Guardian",
+    color: "#ffa116",
+    highlights: [
+      "Global rank 11 in a LeetCode Weekly Contest",
+      "Guardian badge: awarded to the top 5% of contest participants",
+    ],
   },
-  {
-    platform: "Problem solving",
-    title: "2,400+ problems",
-    value: "2400+",
-    detail: "Solved across Codeforces, LeetCode, GeeksforGeeks and InterviewBit",
-    link: null,
-  },
-];
+  // Both rating rings are drawn on the same 0–3000 scale.
+  ringScale: 3000,
+  totalSolved: "2,400+",
+  platforms: ["Codeforces", "LeetCode", "GeeksforGeeks", "InterviewBit"],
+};
 
 export const navItems = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
-  { id: "achievements", label: "Achievements" },
+  { id: "coding", label: "Coding" },
   { id: "contact", label: "Contact" },
 ];
