@@ -158,7 +158,7 @@ export const moreProjects = [
     summary: "Scores a résumé against a job description with Gemini AI and finds matching live job postings.",
     technologies: ["Python", "Gemini AI", "Docker"],
     github: `${GITHUB}/assay-resume-screener`,
-    live: null,
+    live: "https://resumeai-5mpl.onrender.com",
   },
   {
     name: "Hospital Management System",
